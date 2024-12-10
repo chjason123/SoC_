@@ -35,6 +35,8 @@ begin
                     if count2 = "0000" then 
                         state <= '0';
                     end if;
+				when others =>
+					null;
             end case;
         end if;
     end process;
