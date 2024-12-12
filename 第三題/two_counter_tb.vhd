@@ -38,9 +38,7 @@ begin
         s_rst <= '0';
         wait for 20 ns;
         s_rst <= '1';
-
         wait for 2000 ns;
-
         wait;
     end process;
 
