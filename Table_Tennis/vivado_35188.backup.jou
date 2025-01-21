@@ -1,0 +1,43 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Mon Jan 20 23:32:20 2025
+# Process ID: 35188
+# Current directory: C:/Users/USER/Desktop/lab_5/test/Table_Tennis
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent35892 C:\Users\USER\Desktop\lab_5\test\Table_Tennis\Table_Tennis.xpr
+# Log file: C:/Users/USER/Desktop/lab_5/test/Table_Tennis/vivado.log
+# Journal file: C:/Users/USER/Desktop/lab_5/test/Table_Tennis\vivado.jou
+# Running On        :guanhau
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency     :2688 MHz
+# CPU Physical cores:14
+# CPU Logical cores :20
+# Host memory       :16869 MB
+# Swap memory       :16642 MB
+# Total Virtual     :33512 MB
+# Available Virtual :19103 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/USER/Desktop/lab_5/test/Table_Tennis/Table_Tennis.xpr
+update_compile_order -fileset sources_1
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 4
+wait_on_run impl_1
+launch_simulation -mode post-implementation -type timing
+source Table_Tennis_tb.tcl
+close_sim
+launch_simulation -mode post-implementation -type timing
+source Table_Tennis_tb.tcl
+launch_simulation
+source Table_Tennis_tb.tcl
+current_sim simulation_2
+close_sim
+launch_simulation -mode post-implementation -type timing
+launch_simulation -mode post-implementation -type timing
+launch_simulation -mode post-implementation -type timing
+launch_simulation -mode post-implementation -type timing
+close_sim

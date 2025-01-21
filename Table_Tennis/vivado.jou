@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Jan 21 14:00:32 2025
+# Process ID: 36012
+# Current directory: C:/Users/USER/Desktop/SoC/第五題/Table_Tennis
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent28824 C:\Users\USER\Desktop\SoC\第五題\Table_Tennis\Table_Tennis.xpr
+# Log file: C:/Users/USER/Desktop/SoC/第五題/Table_Tennis/vivado.log
+# Journal file: C:/Users/USER/Desktop/SoC/第五題/Table_Tennis\vivado.jou
+# Running On        :guanhau
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency     :2688 MHz
+# CPU Physical cores:14
+# CPU Logical cores :20
+# Host memory       :16869 MB
+# Swap memory       :16642 MB
+# Total Virtual     :33512 MB
+# Available Virtual :17151 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/USER/Desktop/SoC/第五題/Table_Tennis/Table_Tennis.xpr
+update_compile_order -fileset sources_1

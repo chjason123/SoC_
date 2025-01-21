@@ -1,0 +1,4 @@
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/USER/Desktop/lab_5/test/Table_Tennis/Table_Tennis.srcs/sources_1/new/Table_Tennis.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'Table_Tennis'
+INFO: [VRFC 10-163] Analyzing VHDL file "C:/Users/USER/Desktop/lab_5/test/Table_Tennis/Table_Tennis.srcs/sim_1/new/Table_Tennis_tb.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'Table_Tennis_tb'

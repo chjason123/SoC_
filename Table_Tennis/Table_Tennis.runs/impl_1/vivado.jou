@@ -1,0 +1,24 @@
+#-----------------------------------------------------------
+# Vivado v2024.1 (64-bit)
+# SW Build 5076996 on Wed May 22 18:37:14 MDT 2024
+# IP Build 5075265 on Wed May 22 21:45:21 MDT 2024
+# SharedData Build 5076995 on Wed May 22 18:29:18 MDT 2024
+# Start of session at: Tue Jan 21 13:38:07 2025
+# Process ID: 36804
+# Current directory: C:/Users/USER/Desktop/lab_5/test/Table_Tennis/Table_Tennis.runs/impl_1
+# Command line: vivado.exe -log Table_Tennis.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source Table_Tennis.tcl -notrace
+# Log file: C:/Users/USER/Desktop/lab_5/test/Table_Tennis/Table_Tennis.runs/impl_1/Table_Tennis.vdi
+# Journal file: C:/Users/USER/Desktop/lab_5/test/Table_Tennis/Table_Tennis.runs/impl_1\vivado.jou
+# Running On        :guanhau
+# Platform          :Windows Server 2016 or Windows 10
+# Operating System  :22631
+# Processor Detail  :12th Gen Intel(R) Core(TM) i7-12700H
+# CPU Frequency     :2688 MHz
+# CPU Physical cores:14
+# CPU Logical cores :20
+# Host memory       :16869 MB
+# Swap memory       :16642 MB
+# Total Virtual     :33512 MB
+# Available Virtual :15322 MB
+#-----------------------------------------------------------
+source Table_Tennis.tcl -notrace

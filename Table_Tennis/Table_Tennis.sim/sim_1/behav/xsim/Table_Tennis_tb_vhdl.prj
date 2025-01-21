@@ -1,0 +1,7 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Table_Tennis.srcs/sources_1/new/Table_Tennis.vhd" \
+"../../../../Table_Tennis.srcs/sim_1/new/Table_Tennis_tb.vhd" \
+
+# Do not sort compile order
+nosort
