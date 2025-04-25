@@ -28,7 +28,9 @@ ENTITY VGA IS
     green_out  : OUT STD_LOGIC_VECTOR(3 downto 0);  -- 綠色信號輸出
     blue_out   : OUT STD_LOGIC_VECTOR(3 downto 0);  -- 藍色信號輸出
     h_sync     : OUT STD_LOGIC;             -- 水平同步信號輸出
-    v_sync     : OUT STD_LOGIC              -- 垂直同步信號輸出
+    v_sync     : OUT STD_LOGIC;              -- 垂直同步信號輸出
+	pixel_x    : OUT INTEGER;              
+	pixel_y    : OUT INTEGER              
   );
 END VGA;
 
@@ -48,7 +50,8 @@ ARCHITECTURE behavior OF VGA IS
 		return abs(xa * (yb - yc) + xb * (yc - ya) + xc * (ya - yb));
 	end function;
 BEGIN
-  
+  pixel_x <= h_count;
+  pixel_y <= v_count;
   -- 時鐘分頻器：將100MHz時鐘降頻至50MHz
   process (clk, rst)
   begin
