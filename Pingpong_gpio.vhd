@@ -34,7 +34,7 @@ begin
     gpio_in <= io_gpio;
     slow_clk <= clk_div(23);
 
-    -- 除頻器(div_clk)
+    -- (div_clk)
     process (i_clk, i_rst)
     begin
         if i_rst = '1'  then
@@ -44,7 +44,7 @@ begin
         end if;
     end process;
 
-    -- 上升緣偵測(RECEIVE)
+    -- (RECEIVE)
     process(i_clk)
     begin
         if rising_edge(i_clk) then
@@ -88,7 +88,7 @@ begin
         elsif rising_edge(i_clk) then
             case fsm is
                 when RECEIVE =>
-                    if recv_edge = '1' then
+                    if recv_edge = '1' and io_gpio /= 'Z' then
                         fsm <= MOVE_L;
                     elsif ((i_btn = '1') and (ball = "0000000001")and lock='0') then
                         fsm <= MOVE_R;
@@ -123,7 +123,7 @@ begin
     o_led <=ball(8 downto 1);
     
 
-    -- 球移動邏輯
+    -- BALL_MOVE
     process(slow_clk, i_rst)
     begin
         if i_rst = '1' then
@@ -154,7 +154,7 @@ begin
         end if;
     end process;
 
-    -- 傳送控制
+    -- GPIO_SEND
     process(i_clk, i_rst)
     begin
         if i_rst = '1' then
