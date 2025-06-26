@@ -14,9 +14,8 @@ entity Pingpong_gpio is
 end entity;
 
 architecture Behavioral of Pingpong_gpio is
-    type fsm_type is (IDLE, RECEIVE, SEND, MOVE_R, MOVE_L);
-    signal fsm          : fsm_type := IDLE;
-	signal pre_direction          : fsm_type := IDLE;  
+    type fsm_type is ( RECEIVE, SEND, MOVE_R, MOVE_L);
+    signal fsm          : fsm_type ;
     signal ball         : std_logic_vector(9 downto 0) ;
     signal clk_div      : std_logic_vector(28 downto 0) := (others => '0');
     signal slow_clk     : std_logic;
@@ -115,7 +114,7 @@ begin
                         end if;
                     end if;
                 when others =>
-                    fsm <= IDLE;
+                    null;
             end case;
         end if;
     end process;
@@ -125,21 +124,7 @@ begin
     -- LED ±±¨î
 	o_led <=ball(8 downto 1);
 	
-	process(i_clk, i_rst)
-    begin
-        if i_rst = '1' then
-            pre_direction <= IDLE;
-        elsif rising_edge(i_clk) then
-            case fsm is
-                when MOVE_R =>
-                    pre_direction <= MOVE_R;
-                when MOVE_L =>
-                    pre_direction <= MOVE_L;
-                when others =>
-                    null;
-            end case;
-        end if;
-    end process;
+
     -- ²y²¾°ÊÅÞ¿è
     process(slow_clk, i_rst)
     begin
