@@ -1,7 +1,7 @@
 library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-
+use IEEE.std_logic_unsigned.all;
 entity Pingpong_gpio is
     port (
         i_clk   : in std_logic;
@@ -17,7 +17,7 @@ architecture Behavioral of Pingpong_gpio is
     type fsm_type is ( RECEIVE, SEND, MOVE_R, MOVE_L);
     signal fsm          : fsm_type ;
     signal ball         : std_logic_vector(9 downto 0) ;
-    signal clk_div      : std_logic_vector(28 downto 0) := (others => '0');
+    signal clk_div      : std_logic_vector(28 downto 0);
     signal slow_clk     : std_logic;
 
     signal gpio_out     : std_logic ;
@@ -28,18 +28,18 @@ architecture Behavioral of Pingpong_gpio is
 	signal flag   : std_logic ;
 	signal lock  : std_logic ;
     signal send_pulse   : std_logic := '0';
-    signal pulse_counter: integer range 0 to 50 := 0;
+    signal pulse_counter: std_logic_vector(3 downto 0);
 	
 begin
     
-    io_gpio <= gpio_out;
+    io_gpio <= send_pulse when  fsm = SEND else 'Z';
     gpio_in <= io_gpio;
     slow_clk <= clk_div(23);
 
     -- 除頻器
     process (i_clk, i_rst)
     begin
-        if i_rst = '1' or (flag ='0' and fsm=RECEIVE) then
+        if i_rst = '1'  then
             clk_div <= (others => '0');
         elsif rising_edge(i_clk) then
             clk_div <= std_logic_vector(unsigned(clk_div) + 1); 
@@ -63,8 +63,9 @@ begin
     process(i_clk, i_rst)
     begin
         if i_rst = '1' then
-            --lock <= '0';
-        elsif rising_edge(i_clk) then
+            lock <= '0';
+        end if;
+		if rising_edge(i_clk) then
             case fsm is
                 when RECEIVE =>
 					if i_check='1' then
@@ -100,7 +101,7 @@ begin
                         fsm <= SEND;
                     end if;
                 when SEND =>
-                    if pulse_counter = 50 then
+                    if pulse_counter = "1000" then
                         fsm <= RECEIVE;
                     end if;
                 when MOVE_L =>
@@ -121,7 +122,7 @@ begin
 	
 
 
-    -- LED 控制
+    -- LED 
 	o_led <=ball(8 downto 1);
 	
 
@@ -131,10 +132,6 @@ begin
         if i_rst = '1' then
             ball <= "0000000001";
 			first_ball_reset<='1';
-		elsif fsm=RECEIVE then 
-			if lock ='0' then
-				ball <= "0000000001";
-			end if;
         elsif rising_edge(slow_clk) then
 			case fsm is
 				when RECEIVE =>
@@ -154,47 +151,34 @@ begin
 					null;
 			end case;
 		end if;
+		
+		if fsm=RECEIVE and lock ='0' then 
+			ball <= "0000000001";
+		end if;
     end process;
 
     -- 傳送控制
     process(i_clk, i_rst)
     begin
         if i_rst = '1' then
-            pulse_counter <= 0;
+            pulse_counter <= "0000";
             send_pulse <= '0';
         elsif rising_edge(i_clk) then
 			case fsm is
-				when RECEIVE =>
-					
-				when MOVE_R =>
-					
 				when SEND =>
-					if pulse_counter < 50 then
+					if pulse_counter < "1000" then
 						pulse_counter <= pulse_counter + 1;
 						send_pulse <= '1';
 					else
-						pulse_counter <= 0;
+						pulse_counter <= "0000";
 						send_pulse <= '0';
 					end if;
-				when MOVE_L =>
-					
 				when others =>
-					pulse_counter <= 0;
+					pulse_counter <= "0000";
 					send_pulse <= '0';
 			end case;
         end if;
     end process;
 
-    -- GPIO 控制輸出
-    process(i_clk)
-    begin
-        if rising_edge(i_clk) then
-            if fsm = SEND then
-                gpio_out <= send_pulse;
-            else
-                gpio_out <= 'Z';
-            end if;
-        end if;
-    end process;
 
 end Behavioral;
